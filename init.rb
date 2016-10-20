@@ -6,15 +6,15 @@ Customer = Struct.new(:name, :address, :zip) do
   end
 end
 
-FactoryClass = Factory.new(:name, :address, :zip)
-# p FactoryClass.class
-# p FactoryClass.superclass
+# FactoryClass = Factory.new(:name, :address, :zip)
+# # p FactoryClass.class
+# # p FactoryClass.superclass
 
-# FactoryClass = Factory.new(:name, :address, :zip) do 
-#   def greeting
-#     puts "Hello #{name}!"
-#   end
-# end
+FactoryClass = Factory.new(:name, :address, :zip) do 
+  def greeting
+    puts "Hello #{name}!"
+  end
+end
 
 joe = Customer.new('Joe Smith', '123 Maple, Anytown NC', 12345)
 john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
@@ -22,13 +22,14 @@ john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.name
 # p john['name']
 # p john[:name]
-p john[0]
-john[0] = 'Don Smith'
-p john.name
-john[:name] = 'Ron Smith'
-p john.name
-john['name'] = 'Joe Smith'
-p john.name
+# p john[0]
+# john[0] = 'Don Smith'
+# p john.name
+# john[:name] = 'Ron Smith'
+# p john.name
+# john['name'] = 'Joe Smith'
+# p john.name
+p john.greeting
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>

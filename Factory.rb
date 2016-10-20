@@ -1,10 +1,9 @@
 class Factory
-    def self.new(*args)
-        # p args
-        gen_class(*args)
+    def self.new(*args, &block)
+        gen_class(*args,&block)
     end
 
-    def self.gen_class(*args)
+    def self.gen_class(*args,&block)
         Class.new  do
             attr_accessor(*args)
             
@@ -23,6 +22,8 @@ class Factory
             define_method :[]= do |attr , val|
                 attr.is_a?(Fixnum) ? send("#{args[attr]}=",val) : send("#{attr}=",val)
             end
+
+            class_eval &block if block_given?
         end
     end
 end
