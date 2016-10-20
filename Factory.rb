@@ -1,6 +1,6 @@
 class Factory
     def self.new(*args)
-        p args
+        # p args
         gen_class(*args)
     end
 
@@ -15,6 +15,10 @@ class Factory
                 end                
             end
 
+            define_method :[] do |val|
+                #TODO error if not Exist 
+                val.is_a?(Fixnum) ? send("#{args[val]}") : send(val)
+            end
         end
     end
 end

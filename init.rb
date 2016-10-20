@@ -7,8 +7,8 @@ Customer = Struct.new(:name, :address, :zip) do
 end
 
 FactoryClass = Factory.new(:name, :address, :zip)
-p FactoryClass.class
-p FactoryClass.superclass
+# p FactoryClass.class
+# p FactoryClass.superclass
 
 # FactoryClass = Factory.new(:name, :address, :zip) do 
 #   def greeting
@@ -20,6 +20,9 @@ joe = Customer.new('Joe Smith', '123 Maple, Anytown NC', 12345)
 john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 p john.inspect
 p john.name
+p john['name']
+p john[:name]
+p john[0]
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
 
 # p joe.name       # => "Joe Smith"
