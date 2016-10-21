@@ -35,12 +35,18 @@ class Factory
                 hash_attr_val.each(&block)
             end
 
+            define_method :length do
+                args.length
+            end
+            
+            alias :size :length
+            
+            class_eval &block if block_given?
+            
             private
             define_method :hash_attr_val do
                 Hash[ args.map { |attr| [attr, send(attr)]} ]
             end
-
-            class_eval &block if block_given?
         end
     end
 end
