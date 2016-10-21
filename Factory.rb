@@ -31,6 +31,15 @@ class Factory
                 values.each(&block)
             end
 
+            define_method :each_pair do |&block|
+                hash_attr_val.each(&block)
+            end
+
+            private
+            define_method :hash_attr_val do
+                Hash[ args.map { |attr| [attr, send(attr)]} ]
+            end
+
             class_eval &block if block_given?
         end
     end

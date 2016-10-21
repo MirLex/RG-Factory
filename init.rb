@@ -26,9 +26,10 @@ john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # john['name'] = 'Joe Smith'
 # p john.name
 # p john.greeting
-p john.values
-p john.values[1..2]
-john.each {|x| p "#{x.class}"}
+# p john.values
+# p john.values[1..2]
+# john.each {|x| p "#{x.class}"}
+john.each_pair{|name, value| p("#{name} => #{value}") }
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
@@ -41,7 +42,7 @@ john.each {|x| p "#{x.class}"}
 # joe['name'] = 'John Smith'
 # p joe[0]         # => "John Smith"
 # joe.each {|x| p (x) }
-# joe.each_pair {|name, value| p("#{name} => #{value}") }
+joe.each_pair {|name, value| p("#{name} => #{value}") }
 # p joe.eql?(john)
 # p joe.hash
 # p john.hash
