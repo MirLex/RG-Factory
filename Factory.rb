@@ -46,6 +46,10 @@ class Factory
             define_method :members  do
                 args
             end
+
+            define_method :hash do
+                hash_attr_val.hash
+            end
             
             alias :size :length
             alias :to_a :values

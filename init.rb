@@ -13,7 +13,9 @@ FactoryClass = Factory.new(:name, :address, :zip) do
 end
 
 joe = Customer.new('Joe Smith', '123 Maple, Anytown NC', 12345)
+joe2 = Customer.new('Joe Smith', '123 Maple, Anytown NC', 12345)
 john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
+john2 = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.inspect
 # p john.name
 # p john['name']
@@ -36,7 +38,9 @@ john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.to_s
 # p john.inspect
 # p john.values_at(1..2)
-p john.members
+# p john.members
+p john.hash
+p john2.hash
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
@@ -50,11 +54,12 @@ p john.members
 # joe.each {|x| p (x) }
 # joe.each_pair {|name, value| p("#{name} => #{value}") }
 # p joe.eql?(john)
-# p joe.hash
+p joe.hash
+p joe2.hash
 # p john.hash
 # p joe.length
 # p joe.size
-p joe.members
+# p joe.members
 # joe.select {|val| p val if val.is_a?(Fixnum)}
 # p joe.to_a[1..2]
 # p joe.values_at(1..2)
