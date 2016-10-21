@@ -23,6 +23,14 @@ class Factory
                 attr.is_a?(Fixnum) ? send("#{args[attr]}=",val) : send("#{attr}=",val)
             end
 
+            define_method :values do
+                args.map{|attr| send(attr)}
+            end
+
+            define_method :each do |&block|
+                values.each(&block)
+            end
+
             class_eval &block if block_given?
         end
     end

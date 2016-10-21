@@ -6,10 +6,6 @@ Customer = Struct.new(:name, :address, :zip) do
   end
 end
 
-# FactoryClass = Factory.new(:name, :address, :zip)
-# # p FactoryClass.class
-# # p FactoryClass.superclass
-
 FactoryClass = Factory.new(:name, :address, :zip) do 
   def greeting
     puts "Hello #{name}!"
@@ -29,7 +25,10 @@ john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.name
 # john['name'] = 'Joe Smith'
 # p john.name
-p john.greeting
+# p john.greeting
+p john.values
+p john.values[1..2]
+john.each {|x| p "#{x.class}"}
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
