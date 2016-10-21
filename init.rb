@@ -39,10 +39,11 @@ john2 = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.inspect
 # p john.values_at(1..2)
 # p john.members
-p john.eql?(john2)
-p john == john2
-p john.hash
-p john2.hash
+# p john.eql?(john2)
+# p john == john2
+# p john.hash
+# p john2.hash
+john.select{|val| p val if val.is_a?(Fixnum)}
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
@@ -55,14 +56,14 @@ p john2.hash
 # p joe[0]         # => "John Smith"
 # joe.each {|x| p (x) }
 # joe.each_pair {|name, value| p("#{name} => #{value}") }
-p joe.eql?(joe2)
-p joe.hash
-p joe2.hash
+# p joe.eql?(joe2)
+# p joe.hash
+# p joe2.hash
 # p john.hash
 # p joe.length
 # p joe.size
 # p joe.members
-# joe.select {|val| p val if val.is_a?(Fixnum)}
+joe.select {|val| p val if val.is_a?(Fixnum)}
 # p joe.to_a[1..2]
 # p joe.values_at(1..2)
 # p joe.values

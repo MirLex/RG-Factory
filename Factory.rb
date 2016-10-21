@@ -54,6 +54,10 @@ class Factory
             define_method :eql? do |other|
                 self.class == other.class ? hash == other.hash : false
             end
+
+            define_method :select do |&block|
+                values.each(&block)
+            end
             
             alias :size :length
             alias :to_a :values
