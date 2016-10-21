@@ -38,6 +38,10 @@ class Factory
             define_method :length do
                 args.length
             end
+
+            define_method :values_at do |index|
+                values[index]
+            end
             
             alias :size :length
             alias :to_a :values
