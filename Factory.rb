@@ -40,7 +40,8 @@ class Factory
             end
             
             alias :size :length
-            
+            alias :to_a :values
+
             class_eval &block if block_given?
             
             private
