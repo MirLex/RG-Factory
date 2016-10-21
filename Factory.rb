@@ -50,10 +50,15 @@ class Factory
             define_method :hash do
                 hash_attr_val.hash
             end
+
+            define_method :eql? do |other|
+                self.class == other.class ? hash == other.hash : false
+            end
             
             alias :size :length
             alias :to_a :values
             alias :to_s :inspect
+            alias :==   :eql?
 
             class_eval &block if block_given?
             

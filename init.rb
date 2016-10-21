@@ -39,6 +39,8 @@ john2 = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.inspect
 # p john.values_at(1..2)
 # p john.members
+p john.eql?(john2)
+p john == john2
 p john.hash
 p john2.hash
 
@@ -53,7 +55,7 @@ p john2.hash
 # p joe[0]         # => "John Smith"
 # joe.each {|x| p (x) }
 # joe.each_pair {|name, value| p("#{name} => #{value}") }
-# p joe.eql?(john)
+p joe.eql?(joe2)
 p joe.hash
 p joe2.hash
 # p john.hash
