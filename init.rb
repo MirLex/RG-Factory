@@ -35,7 +35,8 @@ john = FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12345)
 # p john.to_a[1..2]
 # p john.to_s
 # p john.inspect
-p john.values_at(1..2)
+# p john.values_at(1..2)
+p john.members
 
 
 # => #<struct Customer name="Joe Smith", address="123 Maple, Anytown NC", zip=12345>
@@ -53,10 +54,10 @@ p john.values_at(1..2)
 # p john.hash
 # p joe.length
 # p joe.size
-# p joe.members
+p joe.members
 # joe.select {|val| p val if val.is_a?(Fixnum)}
 # p joe.to_a[1..2]
-p joe.values_at(1..2)
+# p joe.values_at(1..2)
 # p joe.values
 # p joe.to_s
 # p joe.inspect
