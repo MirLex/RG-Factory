@@ -1,8 +1,8 @@
 require_relative('../Factory')
 RSpec.describe Factory do
-  subject(:facroty_obj) { FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12_345) }
+  subject(:facroty_obj)       { FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12_345) }
   subject(:other_facroty_obj) { FactoryClass.new('John Smith', '123 Maple, Anytown NC', 12_345) }
-  subject(:struct_obj) { StructClass.new('John Smith', '123 Maple, Anytown NC', 12_345) }
+  subject(:struct_obj)        { StructClass.new('John Smith', '123 Maple, Anytown NC', 12_345) }
 
   before(:all) do
     FactoryClass = Factory.new(:name, :address, :zip) do
@@ -89,13 +89,13 @@ RSpec.describe Factory do
 
   context '#each' do
     it 'should exec block to each attr' do
-      expect(facroty_obj.each { |x| x }).to eq(['John Smith', '123 Maple, Anytown NC', 12_345])
+      expect { facroty_obj.each{ |x| p x } }.to output(/John Smith\"\n\"123 Maple, Anytown NC\"\n12345/).to_stdout
     end
   end
 
   context '#each_pair' do
     it 'should exec block to each_pair attr => attr[val]' do
-      expect(facroty_obj.each_pair { |name, value| "#{name} => #{value}" }).to eq(name: 'John Smith', address: '123 Maple, Anytown NC', zip: 12_345)
+      expect { facroty_obj.each_pair { |name, value| p "#{name} => #{value}" } }.to output(/name => John Smith\"\n\"address => 123 Maple, Anytown NC\"\n\"zip => 12345/).to_stdout
     end
   end
 
@@ -141,7 +141,7 @@ RSpec.describe Factory do
 
   context '#select' do
     it 'should exec select block to each attr[val]' do
-      expect(facroty_obj.select { |val| val if defined?(val) }).to eq(['John Smith', '123 Maple, Anytown NC', 12_345])
+      expect {facroty_obj.select {|val| print val if val.is_a?(Integer)} }.to output('12345').to_stdout
     end
   end
 
