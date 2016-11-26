@@ -26,106 +26,58 @@ RSpec.describe Factory do
 
   context '#initialize' do
     it 'create new instance of FactoryClass' do
-      expect(facroty_obj.class).to eq(FactoryClass)
+      expect(facroty_obj).to be_instance_of FactoryClass
     end
   end
 
   context '#attr_reader' do
-    it 'should return facroty_obj.name' do
-      expect(facroty_obj.name).to eq('John Smith')
-      expect(facroty_obj.name).to eq(struct_obj.name)
-    end
-
-    it 'should return facroty_obj.address' do
-      expect(facroty_obj.address).to eq('123 Maple, Anytown NC')
-      expect(facroty_obj.address).to eq(struct_obj.address)
-    end
-
-    it 'should return facroty_obj.zip' do
-      expect(facroty_obj.zip).to eq(12_345)
-      expect(facroty_obj.zip).to eq(struct_obj.zip)
+    attributes = {
+      'name'    => 'John Smith',
+      'address' => '123 Maple, Anytown NC',
+      'zip'     => 12_345
+    }.each do |attr, val|
+      it "return attribute value facroty_obj.#{attr} " do
+        expect(facroty_obj.send(attr)).to eq(val)
+        expect(facroty_obj.send(attr)).to eq(struct_obj.send(attr))
+      end
     end
   end
 
   context '#[]' do
-    it 'should return facroty_obj[:name]' do
-      expect(facroty_obj[:name]).to eq('John Smith')
-      expect(facroty_obj[:name]).to eq(struct_obj[:name])
-    end
-    it 'should return facroty_obj[:address]' do
-      expect(facroty_obj[:address]).to eq('123 Maple, Anytown NC')
-      expect(facroty_obj[:address]).to eq(struct_obj[:address])
-    end
-    it 'should return facroty_obj[:zip]' do
-      expect(facroty_obj[:zip]).to eq(12_345)
-      expect(facroty_obj[:zip]).to eq(struct_obj[:zip])
-    end
-
-    it 'should return facroty_obj[\'name\']' do
-      expect(facroty_obj['name']).to eq('John Smith')
-      expect(facroty_obj['name']).to eq(struct_obj['name'])
-    end
-    it 'should return facroty_obj[\'address\']' do
-      expect(facroty_obj['address']).to eq('123 Maple, Anytown NC')
-      expect(facroty_obj['address']).to eq(struct_obj['address'])
-    end
-    it 'should return facroty_obj[\'zip\']' do
-      expect(facroty_obj['zip']).to eq(12_345)
-      expect(facroty_obj['zip']).to eq(struct_obj['zip'])
-    end
-
-    it 'should return facroty_obj[0]' do
-      expect(facroty_obj[0]).to eq('John Smith')
-      expect(facroty_obj[0]).to eq(struct_obj[0])
-    end
-    it 'should return facroty_obj[1]' do
-      expect(facroty_obj[1]).to eq('123 Maple, Anytown NC')
-      expect(facroty_obj[1]).to eq(struct_obj[1])
-    end
-    it 'should return facroty_obj[2]' do
-      expect(facroty_obj[2]).to eq(12_345)
-      expect(facroty_obj[2]).to eq(struct_obj[2])
+    attributes = {
+      :name     => 'John Smith',
+      'name'    => 'John Smith',
+      0         => 'John Smith',
+      :address  => '123 Maple, Anytown NC',
+      'address' => '123 Maple, Anytown NC',
+      1         => '123 Maple, Anytown NC',
+      :zip      => 12_345,
+      'zip'     => 12_345,
+      2         => 12_345
+    }.each do |attr, val|
+      it "return facroty_obj[#{attr}] attr" do
+        expect(facroty_obj[attr]).to eq(val)
+        expect(facroty_obj[attr]).to eq(struct_obj[attr])
+      end
     end
   end
 
   context '#[]=' do
-    it 'should set facroty_obj[:name]' do
-      facroty_obj[:name] = 'Ron'
-      expect(facroty_obj[:name]).to eq('Ron')
-    end
-    it 'should set facroty_obj[:address]' do
-      facroty_obj[:address] = 'Addr'
-      expect(facroty_obj[:address]).to eq('Addr')
-    end
-    it 'should set facroty_obj[:zip]' do
-      facroty_obj[:zip] = 'Zip'
-      expect(facroty_obj[:zip]).to eq('Zip')
-    end
-
-    it 'should set facroty_obj[\'name\']' do
-      facroty_obj['name'] = 'Ron'
-      expect(facroty_obj[:name]).to eq('Ron')
-    end
-    it 'should set facroty_obj[\'address\']' do
-      facroty_obj['address'] = 'Addr'
-      expect(facroty_obj[:address]).to eq('Addr')
-    end
-    it 'should set facroty_obj[\'zip\']' do
-      facroty_obj['zip'] = 'Zip'
-      expect(facroty_obj[:zip]).to eq('Zip')
-    end
-
-    it 'should set facroty_obj[0]' do
-      facroty_obj[0] = 'Ron'
-      expect(facroty_obj[:name]).to eq('Ron')
-    end
-    it 'should set facroty_obj[1]' do
-      facroty_obj[1] = 'Addr'
-      expect(facroty_obj[:address]).to eq('Addr')
-    end
-    it 'should set facroty_obj[2]' do
-      facroty_obj[2] = 'Zip'
-      expect(facroty_obj[:zip]).to eq('Zip')
+    attributes = {
+      :name     => 'Rons name by symbol',
+      'name'    => 'Rons name by string',
+      0         => 'Rons name by Fixnum',
+      :address  => 'address by symbol',
+      'address' => 'address by string',
+      1         => 'address by Fixnum',
+      :zip      => 'Zip by symbol',
+      'zip'     => 'Zip by string',
+      2         => 'Zip by Fixnum'
+    }.each do |attr, val|
+      it "set facroty_obj[#{attr}]= #{val} attr" do
+        facroty_obj[attr] = val
+        expect(facroty_obj[attr]).to eq(val)
+      end
     end
   end
 
