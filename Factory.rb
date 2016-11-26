@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Factory
   def self.new(*args, &block)
     gen_class(*args, &block)
@@ -9,14 +8,12 @@ class Factory
       attr_accessor(*args)
 
       define_method :initialize do |*ins_args|
-        # TODO: ArgumentError Wrong number of arguments (args.l !=  ins_args)
         args.each_with_index do |arg, index|
           send("#{arg}=", ins_args[index])
         end
       end
 
       define_method :[] do |attr|
-        # TODO: error if not Exist
         attr.is_a?(Integer) ? send((args[attr]).to_s) : send(attr)
       end
 
