@@ -7,10 +7,8 @@ class Factory
     Class.new do
       attr_accessor(*args)
 
-      define_method :initialize do |*ins_args|
-        args.each_with_index do |arg, index|
-          send("#{arg}=", ins_args[index])
-        end
+      define_method :initialize do |*ins_vals|
+        args.zip(ins_vals).each {|arg,val| send("#{arg}=", val)}
       end
 
       define_method :[] do |attr|
