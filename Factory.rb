@@ -8,7 +8,8 @@ class Factory
       attr_accessor(*args)
 
       define_method :initialize do |*ins_vals|
-        args.zip(ins_vals).each {|arg,val| send("#{arg}=", val)}
+        raise ArgumentError, 'wrong number of arguments' if args.size != ins_vals.size
+        args.zip(ins_vals).each { |arg, val| send("#{arg}=", val) }
       end
 
       define_method :[] do |attr|

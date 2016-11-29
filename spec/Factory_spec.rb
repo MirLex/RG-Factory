@@ -28,6 +28,9 @@ RSpec.describe Factory do
     it 'create new instance of FactoryClass' do
       expect(facroty_obj).to be_instance_of FactoryClass
     end
+    it 'raise error if wrong number of arguments send' do
+      expect{FactoryClass.new('John Smith')}.to raise_error(ArgumentError)
+    end
   end
 
   context '#attr_reader' do
