@@ -1,9 +1,6 @@
 class Factory
   def self.new(*args, &block)
-    gen_class(*args, &block)
-  end
-
-  def self.gen_class(*args, &block)
+    
     Class.new do
       attr_accessor(*args)
 
@@ -13,11 +10,11 @@ class Factory
       end
 
       define_method :[] do |attr|
-        attr.is_a?(Integer) ? send((args[attr]).to_s) : send(attr)
+        attr.is_a?(Numeric) ? send((args[attr]).to_s) : send(attr)
       end
 
       define_method :[]= do |attr, val|
-        attr.is_a?(Integer) ? send("#{args[attr]}=", val) : send("#{attr}=", val)
+        attr.is_a?(Numeric) ? send("#{args[attr]}=", val) : send("#{attr}=", val)
       end
 
       define_method :values do
